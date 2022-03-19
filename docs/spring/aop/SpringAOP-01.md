@@ -49,9 +49,7 @@
     - AspectJ： 属于一个内部的声明，声明类的横切类或者组织结构
     - Spring：针对某些场景进行的一些动态的辅助
 
----
-
-## **Java AOP 设计模式**
+## Java AOP 设计模式
 
 - 代理模式：静态和动态代理
     - 静态代理：通常通过继承或者组合的方式实现
@@ -62,9 +60,9 @@
 - 判断模式：类、方法、注解、参数、异常... （通过反射的模式来匹配拦截的条件）
 - 拦截模式：前置、后置、返回、 异常
 
----
 
-## **Spring AOP 功能概述**
+
+## Spring AOP 功能概述
 
 - 核心特性
     - 纯 Java 实现、无编译时特殊处理、不修改和控制 ClassLoader
@@ -73,9 +71,7 @@
     - Spring IoC 容器整合
     - AspectJ 注解驱动整合（非竞争关系）
 
----
-
-## **Spring AOP 编程模型**
+## Spring AOP 编程模型
 
 - 注解驱动
     - 实现：Enable 模块驱动，@EnableAspectJAutoProxy
@@ -104,24 +100,25 @@
         - Pointcut ：Pointcut
         - Advice ：Advice、BeforeAdvice、AfterAdvice、AfterReturningAdvice、ThrowsAdvice
 
-## **Spring AOP 代理实现**
+## Spring AOP 代理实现
 
 - JDK 动态代理实现 - 基于接口代理
-    
+  
     通常使用 Proxy 对象来实现，在 AOP 中通过 **JdkDynamicAopProxy** 进行实现，通过其中的 **getProxy** 的方式来创建 Proxy 对象
 
-!> 为什么 Proxy.newProxyInstance 会生成新的字节码
+> 为什么 Proxy.newProxyInstance 会生成新的字节码
+>
+> 通过对 Proxy.newProxyInstance 源码的分析
+>     
+>
+> 1. 关键方法 getProxyClass0(ClassLoader loader,Class<?>... interfaces) 中，定义了WeakCache，通过 ProxyClassFactory 的 apply 实现进行返回代理类对象
+> 2. apply 中 通过 ProxyGenerator.generateProxyClass 静态方法，生成代理对象的字节码数组
+> 3. 通过 ClassLoader 机制，用 defineClass0 方法加载类到内存
+> 3. 产生的代理对象，实际是实现了我们的原接口，并且继承了 Proxy 类
+> 5. 通过调用 Proxy 的构造方法进行实例化，构造方法中默认将 InvocationHandler 传进去，返回实例
 
-通过对 Proxy.newProxyInstance 源码的分析
-    
-    1. 关键方法 getProxyClass0(ClassLoader loader,Class<?>... interfaces) 中，定义了WeakCache，通过 ProxyClassFactory 的 apply 实现进行返回代理类对象
-    2. apply 中 通过 ProxyGenerator.generateProxyClass 静态方法，生成代理对象的字节码数组
-    3. 通过 ClassLoader 机制，用 defineClass0 方法加载类到内存
-    4. **产生的代理对象，实际是实现了我们的原接口，并且继承了 Proxy 类**
-    5. 通过调用 Proxy 的构造方法进行实例化，构造方法中默认将 InvocationHandler 传进去，返回实例
-    
 - CGLIB 动态代理实现 - 基于类代理（字节码提升）
-    
+  
     通过 **CglibAopProxy** 进行实现
     **为什么 Java 动态代理无法满足 AOP 的需要？**
     JDK 动态代理只能适用接口的代理，无法对类的代理
@@ -153,7 +150,7 @@
     ```
     
 - AspectJ 适配实现
-    
+  
     通过 **AspectJProxyFactory** 进行实现
     
     为什么 Spring 推荐 AspectJ 注解？
