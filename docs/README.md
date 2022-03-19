@@ -1,14 +1,14 @@
 <p align="center">
   <a href="https://docsify.js.org">
-    <img alt="docsify" src="./docs/_media/icon.svg">
+    <img alt="docsify" src="_media/icon.svg">
   </a>
 </p>
 
 <p align="center">
-  A magical documentation site generator.
+  Welcome to the tech world.
 </p>
 
-<p align="center">
+<!-- <p align="center">
   <a href="#backers"><img alt="Backers on Open Collective" src="https://opencollective.com/docsify/backers/badge.svg?style=flat-square"></a>
   <a href="#sponsors">
     <img alt="Sponsors on Open Collective" src="https://opencollective.com/docsify/sponsors/badge.svg?style=flat-square"></a>
@@ -27,7 +27,7 @@
   <a href="https://opencollective.com/docsify/order/3254">
     <img src="https://opencollective.com/docsify/tiers/gold-sponsor.svg?avatarHeight=36">
   </a>
-</p>
+</p> -->
 
 ## Links
 
